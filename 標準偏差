@@ -1,0 +1,33 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        List<Double> values = new ArrayList<>();
+
+        // スペース区切りで入力（例：0 0 4 1）
+        while (sc.hasNextDouble()) {
+            values.add(sc.nextDouble());
+        }
+        sc.close();
+
+        int n = values.size();
+        if (n < 2) {
+            System.out.println("データが足りません");
+            return;
+        }
+
+        double mean = 0;
+        for (double v : values) mean += v;
+        mean /= n;
+
+        double sumSq = 0;
+        for (double v : values) sumSq += Math.pow(v - mean, 2);
+
+        double sd = Math.sqrt(sumSq / (n - 1)); // 不偏標準偏差
+
+        System.out.printf("平均 = %.4f\n", mean);
+        System.out.printf("標準偏差 = %.4f\n", sd);
+    }
+}
+
