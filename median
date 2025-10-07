@@ -1,0 +1,31 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        List<Double> values = new ArrayList<>();
+
+        // スペース区切りで入力（例：0 0 4 1）
+        while (sc.hasNextDouble()) {
+            values.add(sc.nextDouble());
+        }
+        sc.close();
+
+        if (values.isEmpty()) {
+            System.out.println("データがありません");
+            return;
+        }
+
+        Collections.sort(values);
+        int n = values.size();
+        double median;
+
+        if (n % 2 == 1) {
+            median = values.get(n / 2);
+        } else {
+            median = (values.get(n / 2 - 1) + values.get(n / 2)) / 2.0;
+        }
+
+        System.out.printf("中央値 = %.4f\n", median);
+    }
+}
